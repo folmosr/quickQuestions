@@ -68,27 +68,33 @@ export class AppUsersComponent {
   private getFormattedDate(): string {
     const today = new Date();
     const yyyy = today.getFullYear();
-    let rawmm = today.getMonth() + 1; // Months start at 0!
+    let rawmm = today.getMonth() - 5; // Months start at 0!
     let rawdd = today.getDate();
-    let dd, mm;
 
-    if (rawdd < 10) dd = '0' + rawdd; else dd = rawdd.toString();
-    if (rawmm < 10) mm = '0' + rawmm; else mm = rawmm.toString();
+    let dd: string, mm: string;
+
+    if (rawdd < 10) dd = '0' + rawdd; else dd = `${rawdd}`;
+    if (rawmm < 10) {
+      mm = (rawmm == 0) ? '01' : `0${rawmm}`
+    } else {
+      mm = `${rawmm}`
+    };
 
     const formattedToday = yyyy + '-' + mm + '-' + dd;
     return formattedToday;
   }
+}
 
-  submitApplication() {
-    const formDetail: any = {
-      name: this.applyForm.value.name,
-      email: this.applyForm.value.email,
-      birthdate: this.applyForm.value.birthdate,
-      address: {
-        zip: this.applyForm.value.address.zip,
-        city: this.applyForm.value.address.city,
-      }
-    };
-    this.event.emit(formDetail);
-  }
+submitApplication() {
+  const formDetail: any = {
+    name: this.applyForm.value.name,
+    email: this.applyForm.value.email,
+    birthdate: this.applyForm.value.birthdate,
+    address: {
+      zip: this.applyForm.value.address.zip,
+      city: this.applyForm.value.address.city,
+    }
+  };
+  this.event.emit(formDetail);
+}
 }
