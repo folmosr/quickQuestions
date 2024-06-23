@@ -1,0 +1,9 @@
+{
+    "name": "fabi",
+    "email": "fab@gmail.com",
+    "birthdate": "2024-06-23",
+    "address": {
+        "zip": 46800,
+        "city": "valencia"
+    }
+}
